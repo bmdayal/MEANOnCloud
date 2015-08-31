@@ -1,7 +1,19 @@
+//mongodb commands: http://howtonode.org/node-js-and-mongodb-getting-started-with-mongojs
+/*var databaseURI = "localhost:27017/somedb";
+var collections = ["users", "blogs"];
+var db = require("mongojs").connect(databaseURI, collections);
+
+module.exports = db;
+
+and then just require it where you need to connect to mongo like:
+
+var db = require("./db");
+*/
+
 var express = require('express');
 var app = express();
 var mongojs = require('mongojs');
-var db = mongojs('Persons', ['Persons']);
+var db = mongojs('AddressBook', ['Persons']);
 
 var bodyParser = require('body-parser');
 

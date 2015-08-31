@@ -18,13 +18,14 @@ PersonCtrl.controller('PersonCtrl',['$scope', '$routeParams',
             $scope.error = "Error retriving data";// error.data;
         };
 
-    	var onPersonGetCompleted = function(data){
-    		$scope.persons = data;
+    	var onPersonGetCompleted = function(response){
+    		$scope.persons = response.data;
+            console.log($scope.persons);
     	}
     	
-    		$http.get('/persons')
-    			.then(onPersonGetCompleted, onError);
-    		console.log('Response received');
+    	$http.get('/persons')
+    		.then(onPersonGetCompleted, onError);
+    	console.log('Response received...');
     	
 
         /*

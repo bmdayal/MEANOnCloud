@@ -1,24 +1,23 @@
 <div>
 	{{working}}
-	<div class="container-fluid">
-			<h1>
-			Hello from view folder.
-			</h1>
-			<table class="table">
-				<thead>
-					<tr>
-						<td>Name</td>
-						<td>Email</td>
-						<td>Number</td>
-					</tr>
-				</thead>
-				<tbody>
-					<tr ng-repeat="person in persons">
-						<td>{{person.name}}</td>
-						<td>{{person.email}}</td>
-						<td>{{person.number}}</td>
-					</tr>
-				</tbody>
-			</table>
-	</div>
 </div>
+	
+<h1>
+	Person Details
+</h1>
+<table class="table table-striped">
+	<thead>
+		<tr class='danger'>
+			<td>Name</td>
+			<td>Email</td>
+			<td>Number</td>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="person in persons" class='info'>
+			<td>{{person.name}}</td>
+			<td>{{person.email}}</td>
+			<td>{{person.number}}</td>
+		</tr>
+	</tbody>
+</table>
