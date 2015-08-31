@@ -11,9 +11,22 @@ PersonCtrl.controller('PersonCtrl',['$scope', '$routeParams',
 (function () {
     var addressBookApp = angular.module("addressBookApp");
 
-    var PersonCtrl = function ($scope)
+    var PersonCtrl = function ($scope, $http)
     {
-        $scope.personName = "Brij Mohan";
+    	$scope.working = 'Angular is Working';
+    	var onError = function (error) {
+            $scope.error = "Error retriving data";// error.data;
+        };
+
+    	var onPersonGetCompleted = function(data){
+    		$scope.persons = data;
+    	}
+    	
+    		$http.get('/persons')
+    			.then(onPersonGetCompleted, onError);
+    		console.log('Response received');
+    	
+
         /*
         var onUserComplete = function (data) {
             $scope.user = data;
@@ -23,13 +36,8 @@ PersonCtrl.controller('PersonCtrl',['$scope', '$routeParams',
 
         var onReposCompleted = function (data) {
             $scope.repos = data;
-        };
-
-        var onError = function (error) {
-            $scope.error = "Error retriving data";// error.data;
-        };
-        github.getUser($routeParams.username).then(onUserComplete, onError)
-        */
+        };*/
+        
     }
     addressBookApp.controller('PersonCtrl', PersonCtrl);
 }());
