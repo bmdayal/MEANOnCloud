@@ -15,7 +15,7 @@ PersonCtrl.controller('PersonCtrl',['$scope', '$routeParams',
     {
     	$scope.working = 'Angular is Working';
     	var onError = function (error) {
-            $scope.error = "Error retriving data";// error.data;
+            $scope.error = error.data;
         };
 
     	var onPersonGetCompleted = function(response){

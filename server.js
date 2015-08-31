@@ -1,4 +1,6 @@
 //mongodb commands: http://howtonode.org/node-js-and-mongodb-getting-started-with-mongojs
+//http://docs.mongodb.org/manual/reference/mongo-shell/
+
 /*var databaseURI = "localhost:27017/somedb";
 var collections = ["users", "blogs"];
 var db = require("mongojs").connect(databaseURI, collections);
