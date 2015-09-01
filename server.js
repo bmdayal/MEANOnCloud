@@ -31,6 +31,10 @@ app.get('/persons', function(req, res){
 	})
 });
 
+app.post('/person', function(req, res){
+	console.log(res.data);
+})
+
 //app.use(express.static(__dirname + "/app/views"));
 app.listen(3000);
 console.log("server running on port 3000");

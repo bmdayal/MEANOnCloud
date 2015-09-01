@@ -21,7 +21,7 @@
 			<td>{{person.email}}</td>
 			<td>{{person.number}}</td>
 			<td><a ng-href='#/person' data-toggle='modal' data-target='#personEditModal' ng-click='search(person._id)'>Edit</a></td>
-			<td><a href='#' ng-click='delete(person._id)'>Delete</a></td>
+			<td><a href='#/person' ng-click='delete(person._id)'>Delete</a></td>
 		</tr>
 		<tr><!-- Trigger the modal with a button -->
 			<td colspan='5'><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#personAddModal">Add Person</button></td>
