@@ -5,8 +5,15 @@
 <h1>
 	Person Details
 </h1>
-<table class="table table-striped">
+<table class="table table-striped table-bordered">
 	<thead>
+		<tr>
+			<td><input type="text" id="txtInputName" placeHolder="Enter Name" ng-model="person.name"></td>
+			<td><input type="email" id="txtInputEmail" placeHolder="Enter Email" ng-model="person.email"></td>
+			<td><input type="phone" id="txtInputPhone" placeHolder="Enter Name" ng-model="person.number"></td>
+			<td><button id="btnAdd" class="btn btn-info btn-sm" data-ng-click="addPerson(person);">Add</input></td>
+			<td><button id="btnEdit" class="btn btn-info btn-sm" data-ng-click="updatePerson(person);">Update</input></td>
+		</tr>
 		<tr class='danger'>
 			<td>Name</td>
 			<td>Email</td>
@@ -14,18 +21,19 @@
 			<td>Edit</td>
 			<td>Delete</td>
 		</tr>
+	
 	</thead>
 	<tbody>
 		<tr ng-repeat="person in persons" class='info'>
 			<td>{{person.name}}</td>
 			<td>{{person.email}}</td>
 			<td>{{person.number}}</td>
-			<td><a ng-href='#/person' data-toggle='modal' data-target='#personEditModal' ng-click='search(person._id)'>Edit</a></td>
-			<td><a href='#/person' ng-click='delete(person._id)'>Delete</a></td>
+			<td><button ng-click="searchPerson(person._id);" class="btn btn-info btn-sm">Edit</button></td>
+			<td><button ng-click="deletePerson(person._id);" class="btn btn-info btn-sm">Delete</button></td>
 		</tr>
-		<tr><!-- Trigger the modal with a button -->
+		<!--<tr>
 			<td colspan='5'><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#personAddModal">Add Person</button></td>
-		</tr>	
+		</tr>-->	
 	</tbody>
 </table>
 <!-- Modal -->
@@ -42,15 +50,15 @@
         <form>
 		  <div class="form-group">
 		    <label for="txtName">Name</label>
-		    <input type="name" class="form-control" ng-model='person.name' id="txtName" placeholder="Name">
+		    <input type="name" class="form-control" ng-bind='person.name' id="txtName" placeholder="Name">
 		  </div>
 		  <div class="form-group">
 		    <label for="txtEmail">Email</label>
-		    <input type="email" class="form-control" id="txtEmail" ng-modal='person.email' placeholder="Email">
+		    <input type="email" class="form-control" id="txtEmail" ng-bind='person.email' placeholder="Email">
 		  </div>
 		  <div class="form-group">
 		    <label for="txtPhone">Phone</label>
-		    <input type="phone" class="form-control" id="txtPhone" ng-modal='person.phone' placeholder="Phone">
+		    <input type="phone" class="form-control" id="txtPhone" ng-bind='person.phone' placeholder="Phone">
 		  </div>
 		  <button type="submit" class="btn btn-default">Submit</button>
 		</form>
@@ -74,15 +82,15 @@
         <form>
 		  <div class="form-group">
 		    <label for="txtName">Name</label>
-		    <input type="name" class="form-control" id="txtName" ng-modal='person.name' placeholder="Name">
+		    <input type="name" class="form-control" id="txtName" ng-bind='person.name' placeholder="Name">
 		  </div>
 		  <div class="form-group">
 		    <label for="txtEmail">Email</label>
-		    <input type="email" class="form-control" id="txtEmail" ng-modal='person.email' placeholder="Email">
+		    <input type="email" class="form-control" id="txtEmail" ng-bind='person.email' placeholder="Email">
 		  </div>
 		  <div class="form-group">
 		    <label for="txtPhone">Phone</label>
-		    <input type="phone" class="form-control" id="txtPhone" ng-modal='person.phone' placeholder="Phone">
+		    <input type="phone" class="form-control" id="txtPhone" ng-bind='person.phone' placeholder="Phone">
 		  </div>
 		  <button type="submit" class="btn btn-default">Submit</button>
 		</form>

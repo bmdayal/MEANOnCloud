@@ -42,37 +42,53 @@ PersonCtrl.controller('PersonCtrl',['$scope', '$routeParams',
             console.log(response.data);
         };
 
-        var search = function(id){
-            $http.get('/person', id)
+        $scope.searchPerson = function(id){
+            $http.get('/person/' + id)
                     .then(onGetByIdCompleted, onError);
             console.log(id);
         };
         //end get person by Id
 
-        //save person
-        var onSavePersonCompleted = function(response){
+        //add new person
+        var onAddPersonCompleted = function(response){
             $scope.person = response.data;
             console.log(response.data);
             refresh();
         };
-        var savePerson = function(person){
+        $scope.addPerson = function(person){
             $http.post('/addPerson', person)
-                    .then(onSavePersonCompleted, onError);
+                    .then(onAddPersonCompleted, onError);
             console.log(person);
         };
-        //end save person
+        //end add new person
 
-        /*
-        var onUserComplete = function (data) {
-            $scope.user = data;
-            github.getRepos($scope.user)
-                 .then(onReposCompleted, onError);
+        //delete person
+        $scope.deletePerson = function(id){
+            $http.delete('/deletePerson/' + id)
+                .then(onPersonDeleteCompleted,  onError);
+            console.log(id);
         };
 
-        var onReposCompleted = function (data) {
-            $scope.repos = data;
-        };*/
-        
+        var onPersonDeleteCompleted = function(response){
+            $scope.person = response.data;
+            console.log(response.data);
+            refresh();
+        };
+        //end delete person
+
+        //update person
+        $scope.updatePerson = function(person){
+            $http.put("/updatePerson", person)
+                .then(onUpdatePersonCompleted, onError);
+                    console.log(person);
+        };
+
+        var onUpdatePersonCompleted = function(response){
+            $scope.person = null;//response.data;
+            console.log(response.data);
+            refresh();
+        };
+        //end update person
     }
     addressBookApp.controller('PersonCtrl', PersonCtrl);
 }());
