@@ -10,7 +10,7 @@
         })
         .when("/person/:personId", {
             templateUrl: 'app/views/persondetail.html',
-            controller: "PersonCtrl"
+            controller: "PersonAddressCtrl"
         })
         .otherwise({ redirectTo: "/person" })
     });
