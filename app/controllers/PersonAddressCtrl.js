@@ -3,7 +3,7 @@
 (function () {
     var addressBookApp = angular.module("addressBookApp");
 
-    var PersonAddressCtrl = function ($scope, $http)
+    var PersonAddressCtrl = function ($scope, $http, $routeParams)
     {
     	$scope.working = 'Angular is Working';
         //common error function
@@ -19,8 +19,9 @@
     	}
     	
 
-        var refresh = function(){
-        	$http.get('/person/addresses/')
+        var refresh = function(id){
+            console.log($routeParams.personId);
+        	$http.get('/addresses/' + $routeParams.personId)
         		.then(onAddressGetCompleted, onError);
         	console.log('Response received...');
         }

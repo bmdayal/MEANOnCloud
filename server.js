@@ -1,21 +1,22 @@
 //mongodb commands: http://howtonode.org/node-js-and-mongodb-getting-started-with-mongojs
 //http://docs.mongodb.org/manual/reference/mongo-shell/
 
-/*var databaseURI = "localhost:27017/somedb";
-var collections = ["users", "blogs"];
-var db = require("mongojs").connect(databaseURI, collections);
+//Configure routing, and break this app.js in different node routes
+//http://expressjs.com/guide/routing.html
 
-module.exports = db;
+//Routing help: https://codeforgeek.com/2015/05/expressjs-router-tutorial/
+//See at the bottom
 
-and then just require it where you need to connect to mongo like:
-
-var db = require("./db");
-*/
+//References: https://github.com/mafintosh/mongojs
+//
 
 var express = require('express');
 var app = express();
 var mongojs = require('mongojs');
-var db = mongojs('AddressBook', ['Persons']);
+var collections = ['Persons']
+databaseURI = "mongodb://mongotest:mongotest@ds048368.mongolab.com:48368/MongoLab-3";
+
+var db = mongojs(databaseURI, collections, {authMechanism: 'ScramSHA1'});
 
 var bodyParser = require('body-parser');
 
@@ -25,16 +26,27 @@ app.use(bodyParser.json());
 app.get('/persons', function(req, res){
 	console.log('Received find all persons request');
 	db.Persons.find(function(err, docs){
-		console.log(docs);
-		res.json(docs);
-	})
+		if(err){
+			console.log(err); throw err;
+		} else
+		{
+			console.log(docs);
+			res.json(docs);
+		}
+	});
 });
 
 app.get('/person/:id', function(req, res){
 	console.log('Received findOne person request');
+	
 	db.Persons.findOne({_id: new mongojs.ObjectId(req.params.id)}, function(err, docs){
-		console.log(docs);
-		res.json(docs);
+		if(err){
+			console.log(err); throw err;
+		} else
+		{
+			console.log(docs);
+			res.json(docs);
+		}
 	})
 });
 
@@ -64,6 +76,15 @@ app.put('/updatePerson', function(req, res){
 										})
 	});
 
-//app.use(express.static(__dirname + "/app/views"));
+
+app.get('/addresses/:id', function(req, res){
+	console.log('Received findOne person addresses request');
+	console.log(req.params.id);
+	db.Persons.findOne({_id: new mongojs.ObjectId(req.params.id)}, function(err, docs){
+		console.log(docs.addresses);
+		res.json(docs);
+	})
+});
+
 app.listen(3000);
 console.log("server running on port 3000");
