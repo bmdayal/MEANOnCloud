@@ -14,7 +14,8 @@ var express = require('express');
 var app = express();
 var mongojs = require('mongojs');
 var collections = ['Persons']
-databaseURI = "mongodb://mongotest:mongotest@ds048368.mongolab.com:48368/MongoLab-3";
+//databaseURI = "mongodb://mongotest:mongotest@ds048368.mongolab.com:48368/MongoLab-3";
+databaseURI = "mongodb://MongoLab-3:ojLtYaTSeM.6Ywk2BDxCO8.qq1KpeyMMLklH4_mVg2s-@ds048368.mongolab.com:48368/MongoLab-3";
 
 var db = mongojs(databaseURI, collections, {authMechanism: 'ScramSHA1'});
 
